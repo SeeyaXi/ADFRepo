@@ -1,0 +1,15 @@
+{
+	"name": "SourceDatasetPowershell",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"tableName": "data_source_table_powershell"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

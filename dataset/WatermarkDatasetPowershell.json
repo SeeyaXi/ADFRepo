@@ -1,0 +1,15 @@
+{
+	"name": "WatermarkDatasetPowershell",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"tableName": "watermarktable_powershell"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

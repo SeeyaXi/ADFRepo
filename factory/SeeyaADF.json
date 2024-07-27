@@ -1,0 +1,9 @@
+{
+	"name": "SeeyaADF",
+	"location": "chinanorth3",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "85b1fe75-8fc8-4517-b3ef-ff44f86bbcb1",
+		"tenantId": "954ddad8-66d7-47a8-8f9f-1316152d9587"
+	}
+}

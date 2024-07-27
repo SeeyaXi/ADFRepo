@@ -1,0 +1,19 @@
+{
+	"name": "DestinationDataset_sx7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "xyjAzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "descopyfile",
+				"container": "descontainer1"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

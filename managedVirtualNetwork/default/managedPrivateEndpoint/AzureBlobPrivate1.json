@@ -1,0 +1,10 @@
+{
+	"name": "AzureBlobPrivate1",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Storage/storageAccounts/xyjstorageaccount1",
+		"groupId": "blob",
+		"fqdns": [
+			"xyjstorageaccount1.blob.core.chinacloudapi.cn"
+		]
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"name": "VMintegrationRuntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

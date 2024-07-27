@@ -1,0 +1,124 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DataverseEntity1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "MapDrifted1",
+					"description": "Creates an explicit mapping for each drifted column"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1",
+				"source1 derive(createdbyname = toString(byName('createdbyname')),",
+				"          createdbyyominame = toString(byName('createdbyyominame')),",
+				"          createdon = toTimestamp(byName('createdon')),",
+				"          createdonbehalfbyname = toString(byName('createdonbehalfbyname')),",
+				"          createdonbehalfbyyominame = toString(byName('createdonbehalfbyyominame')),",
+				"          crfe7_classroomid = toString(byName('crfe7_classroomid')),",
+				"          crfe7_mytestchoice2 = toString(byName('crfe7_mytestchoice2')),",
+				"          crfe7_mytestchoice2name = toString(byName('crfe7_mytestchoice2name')),",
+				"          crfe7_name = toString(byName('crfe7_name')),",
+				"          crfe7_testaccountname = toString(byName('crfe7_testaccountname')),",
+				"          crfe7_testaccountyominame = toString(byName('crfe7_testaccountyominame')),",
+				"          crfe7_testchoice = toString(byName('crfe7_testchoice')),",
+				"          crfe7_testchoicename = toString(byName('crfe7_testchoicename')),",
+				"          importsequencenumber = toInteger(byName('importsequencenumber')),",
+				"          modifiedbyname = toString(byName('modifiedbyname')),",
+				"          modifiedbyyominame = toString(byName('modifiedbyyominame')),",
+				"          modifiedon = toTimestamp(byName('modifiedon')),",
+				"          modifiedonbehalfbyname = toString(byName('modifiedonbehalfbyname')),",
+				"          modifiedonbehalfbyyominame = toString(byName('modifiedonbehalfbyyominame')),",
+				"          overriddencreatedon = toTimestamp(byName('overriddencreatedon')),",
+				"          owneridname = toString(byName('owneridname')),",
+				"          owneridtype = toString(byName('owneridtype')),",
+				"          owneridyominame = toString(byName('owneridyominame')),",
+				"          owningbusinessunitname = toString(byName('owningbusinessunitname')),",
+				"          statecode = toInteger(byName('statecode')),",
+				"          statecodename = toString(byName('statecodename')),",
+				"          statuscode = toInteger(byName('statuscode')),",
+				"          statuscodename = toString(byName('statuscodename')),",
+				"          timezoneruleversionnumber = toInteger(byName('timezoneruleversionnumber')),",
+				"          utcconversiontimezonecode = toInteger(byName('utcconversiontimezonecode')),",
+				"          versionnumber = toLong(byName('versionnumber')),",
+				"          createdonbehalfby = toString(byName('createdonbehalfby')),",
+				"          owninguser = toString(byName('owninguser')),",
+				"          crfe7_testaccount = toString(byName('crfe7_testaccount')),",
+				"          modifiedby = toString(byName('modifiedby')),",
+				"          modifiedonbehalfby = toString(byName('modifiedonbehalfby')),",
+				"          ownerid = toString(byName('ownerid')),",
+				"          {@odata.etag} = toString(byName('@odata.etag')),",
+				"          createdby = toString(byName('createdby')),",
+				"          owningbusinessunit = toString(byName('owningbusinessunit')),",
+				"          owningteam = toString(byName('owningteam'))) ~> MapDrifted1",
+				"MapDrifted1 sink(allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     partitionFileNames:['output.json'],",
+				"     mapColumn(",
+				"          createdbyname,",
+				"          createdbyyominame,",
+				"          createdon,",
+				"          createdonbehalfbyname,",
+				"          createdonbehalfbyyominame,",
+				"          crfe7_classroomid,",
+				"          crfe7_mytestchoice2,",
+				"          crfe7_mytestchoice2name,",
+				"          crfe7_name,",
+				"          crfe7_testaccountname,",
+				"          crfe7_testaccountyominame,",
+				"          crfe7_testchoice,",
+				"          crfe7_testchoicename,",
+				"          importsequencenumber,",
+				"          modifiedbyname,",
+				"          modifiedbyyominame,",
+				"          modifiedon,",
+				"          modifiedonbehalfbyname,",
+				"          modifiedonbehalfbyyominame,",
+				"          overriddencreatedon,",
+				"          owneridname,",
+				"          owneridtype,",
+				"          owneridyominame,",
+				"          owningbusinessunitname,",
+				"          statecode,",
+				"          statecodename,",
+				"          statuscode,",
+				"          statuscodename,",
+				"          timezoneruleversionnumber,",
+				"          utcconversiontimezonecode,",
+				"          versionnumber,",
+				"          createdonbehalfby,",
+				"          owninguser,",
+				"          crfe7_testaccount,",
+				"          modifiedby,",
+				"          modifiedonbehalfby,",
+				"          ownerid,",
+				"          etag = {@odata.etag},",
+				"          createdby,",
+				"          owningbusinessunit,",
+				"          owningteam",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
