@@ -1,0 +1,394 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "SeeyaADF"
+		},
+		"AzureBlobStorage_testregion2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_testregion2'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
+		},
+		"AzureSynapseAnalytics2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics2'"
+		},
+		"Dataverse1_servicePrincipalCredential": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalCredential' of 'Dataverse1'"
+		},
+		"Snowflake1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake1'"
+		},
+		"SnowflakeLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SnowflakeLinkedService'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"SqlServer2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer2'"
+		},
+		"SqlServer3_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServer3'"
+		},
+		"testregionacc1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'testregionacc1'"
+		},
+		"testregionacc2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'testregionacc2'"
+		},
+		"xyjAzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'xyjAzureBlobStorage1'"
+		},
+		"xyjAzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'xyjAzureBlobStorage2'"
+		},
+		"SinkDatasetPowershell_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
+		},
+		"SinkDatasetPowershell_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "adftutorial/incrementalcopypowershell"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://seeyakeyvault.vault.azure.cn/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://seeyakeyvault1.vault.azure.cn/"
+		},
+		"Dataverse1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "6d6025ec-4ce3-47ae-90e5-9c68bffbd4ec"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SNOWFLAKE"
+		},
+		"SqlServer3_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"SqlServer3_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "testdb1"
+		},
+		"SqlServer3_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "storageaccountstring"
+		},
+		"trigger2_properties_pipeline20240412_2_parameters_trigger1": {
+			"type": "string",
+			"defaultValue": "@trigger().scheduledTime"
+		},
+		"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "mysqlserver-autofailover-regionalpair.database.chinacloudapi.cn"
+		},
+		"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "adminadmin"
+		},
+		"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
+		"AzureBlobPrivate1_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Storage/storageAccounts/xyjstorageaccount1"
+		},
+		"AzureBlobPrivate1_properties_groupId": {
+			"type": "string",
+			"defaultValue": "blob"
+		},
+		"AzureBlobPrivate1_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
+			]
+		},
+		"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver"
+		},
+		"AzureSqlDatabasePrivate_properties_groupId": {
+			"type": "string",
+			"defaultValue": "sqlServer"
+		},
+		"AzureSqlDatabasePrivate_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"xyjserver.database.chinacloudapi.cn"
+			]
+		},
+		"test2PrivateLinkService_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Network/privateLinkServices/seeyaPrivateLinkService2"
+		},
+		"test2PrivateLinkService_properties_groupId": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"test2PrivateLinkService_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"ns4-32.azure-dns.cn.vmsql",
+				"vmsql.seeya.com"
+			]
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "SeeyaADF_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage_testregion2_connectionString": {
+						"value": "[parameters('AzureBlobStorage_testregion2_connectionString')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
+					"AzureSynapseAnalytics1_connectionString": {
+						"value": "[parameters('AzureSynapseAnalytics1_connectionString')]"
+					},
+					"AzureSynapseAnalytics2_connectionString": {
+						"value": "[parameters('AzureSynapseAnalytics2_connectionString')]"
+					},
+					"Dataverse1_servicePrincipalCredential": {
+						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
+					},
+					"Snowflake1_password": {
+						"value": "[parameters('Snowflake1_password')]"
+					},
+					"SnowflakeLinkedService_connectionString": {
+						"value": "[parameters('SnowflakeLinkedService_connectionString')]"
+					},
+					"testregionacc1_connectionString": {
+						"value": "[parameters('testregionacc1_connectionString')]"
+					},
+					"testregionacc2_connectionString": {
+						"value": "[parameters('testregionacc2_connectionString')]"
+					},
+					"xyjAzureBlobStorage1_connectionString": {
+						"value": "[parameters('xyjAzureBlobStorage1_connectionString')]"
+					},
+					"xyjAzureBlobStorage2_connectionString": {
+						"value": "[parameters('xyjAzureBlobStorage2_connectionString')]"
+					},
+					"AzureKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"Dataverse1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('Dataverse1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"Snowflake1_properties_typeProperties_database": {
+						"value": "[parameters('Snowflake1_properties_typeProperties_database')]"
+					},
+					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
+					},
+					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "SeeyaADF_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "SeeyaADF_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"SqlServer3_password": {
+						"value": "[parameters('SqlServer3_password')]"
+					},
+					"SinkDatasetPowershell_properties_typeProperties_fileName": {
+						"value": "[parameters('SinkDatasetPowershell_properties_typeProperties_fileName')]"
+					},
+					"SinkDatasetPowershell_properties_typeProperties_folderPath": {
+						"value": "[parameters('SinkDatasetPowershell_properties_typeProperties_folderPath')]"
+					},
+					"SqlServer3_properties_typeProperties_server": {
+						"value": "[parameters('SqlServer3_properties_typeProperties_server')]"
+					},
+					"SqlServer3_properties_typeProperties_database": {
+						"value": "[parameters('SqlServer3_properties_typeProperties_database')]"
+					},
+					"SqlServer3_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServer3_properties_typeProperties_userName')]"
+					},
+					"keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
+					},
+					"AzureBlobPrivate1_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureBlobPrivate1_properties_privateLinkResourceId')]"
+					},
+					"AzureBlobPrivate1_properties_groupId": {
+						"value": "[parameters('AzureBlobPrivate1_properties_groupId')]"
+					},
+					"AzureBlobPrivate1_properties_fqdns": {
+						"value": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
+					},
+					"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureSqlDatabasePrivate_properties_privateLinkResourceId')]"
+					},
+					"AzureSqlDatabasePrivate_properties_groupId": {
+						"value": "[parameters('AzureSqlDatabasePrivate_properties_groupId')]"
+					},
+					"AzureSqlDatabasePrivate_properties_fqdns": {
+						"value": "[parameters('AzureSqlDatabasePrivate_properties_fqdns')]"
+					},
+					"test2PrivateLinkService_properties_privateLinkResourceId": {
+						"value": "[parameters('test2PrivateLinkService_properties_privateLinkResourceId')]"
+					},
+					"test2PrivateLinkService_properties_groupId": {
+						"value": "[parameters('test2PrivateLinkService_properties_groupId')]"
+					},
+					"test2PrivateLinkService_properties_fqdns": {
+						"value": "[parameters('test2PrivateLinkService_properties_fqdns')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "SeeyaADF_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SqlServer2_connectionString": {
+						"value": "[parameters('SqlServer2_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "SeeyaADF_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"trigger2_properties_pipeline20240412_2_parameters_trigger1": {
+						"value": "[parameters('trigger2_properties_pipeline20240412_2_parameters_trigger1')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_3')]"
+			]
+		}
+	]
+}

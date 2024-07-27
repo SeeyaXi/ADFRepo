@@ -1,0 +1,130 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "SeeyaADF"
+		},
+		"AzureBlobStorage_testregion2_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics2_connectionString": {
+			"value": ""
+		},
+		"Dataverse1_servicePrincipalCredential": {
+			"value": ""
+		},
+		"Snowflake1_password": {
+			"value": ""
+		},
+		"SnowflakeLinkedService_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer2_connectionString": {
+			"value": ""
+		},
+		"SqlServer3_password": {
+			"value": ""
+		},
+		"testregionacc1_connectionString": {
+			"value": ""
+		},
+		"testregionacc2_connectionString": {
+			"value": ""
+		},
+		"xyjAzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"xyjAzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"SinkDatasetPowershell_properties_typeProperties_fileName": {
+			"value": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
+		},
+		"SinkDatasetPowershell_properties_typeProperties_folderPath": {
+			"value": "adftutorial/incrementalcopypowershell"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://seeyakeyvault.vault.azure.cn/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://seeyakeyvault1.vault.azure.cn/"
+		},
+		"Dataverse1_properties_typeProperties_servicePrincipalId": {
+			"value": "6d6025ec-4ce3-47ae-90e5-9c68bffbd4ec"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"value": "SNOWFLAKE"
+		},
+		"SqlServer3_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"SqlServer3_properties_typeProperties_database": {
+			"value": "testdb1"
+		},
+		"SqlServer3_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
+			"value": "storageaccountstring"
+		},
+		"trigger2_properties_pipeline20240412_2_parameters_trigger1": {
+			"value": "@trigger().scheduledTime"
+		},
+		"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "mysqlserver-autofailover-regionalpair.database.chinacloudapi.cn"
+		},
+		"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "adminadmin"
+		},
+		"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
+		},
+		"AzureBlobPrivate1_properties_privateLinkResourceId": {
+			"value": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Storage/storageAccounts/xyjstorageaccount1"
+		},
+		"AzureBlobPrivate1_properties_groupId": {
+			"value": "blob"
+		},
+		"AzureBlobPrivate1_properties_fqdns": {
+			"value": [
+				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
+			]
+		},
+		"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
+			"value": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver"
+		},
+		"AzureSqlDatabasePrivate_properties_groupId": {
+			"value": "sqlServer"
+		},
+		"AzureSqlDatabasePrivate_properties_fqdns": {
+			"value": [
+				"xyjserver.database.chinacloudapi.cn"
+			]
+		},
+		"test2PrivateLinkService_properties_privateLinkResourceId": {
+			"value": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Network/privateLinkServices/seeyaPrivateLinkService2"
+		},
+		"test2PrivateLinkService_properties_groupId": {
+			"value": ""
+		},
+		"test2PrivateLinkService_properties_fqdns": {
+			"value": [
+				"ns4-32.azure-dns.cn.vmsql",
+				"vmsql.seeya.com"
+			]
+		}
+	}
+}
