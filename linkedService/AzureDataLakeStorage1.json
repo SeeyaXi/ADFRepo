@@ -1,0 +1,11 @@
+{
+	"name": "AzureDataLakeStorage1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"sasUri": "https://seeyastorageaccount0729.blob.core.chinacloudapi.cn/containerforadf?sp=racwdlmeop&st=2024-07-29T06:19:00Z&se=2024-08-07T14:19:00Z&spr=https&sv=2022-11-02&sr=c&sig=Sy%2Fk8eCHn0ya2X74vti71fW5SMJNYlI754HdFKuZZg0%3D?sp=racwdlmeop&st=2024-07-29T06:19:00Z&se=2024-08-07T14:19:00Z&spr=https&sv=2022-11-02&sr=c&sig=Sy%2Fk8eCHn0ya2X74vti71fW5SMJNYlI754HdFKuZZg0%3D"
+		}
+	}
+}
