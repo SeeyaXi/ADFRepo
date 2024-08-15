@@ -20,6 +20,9 @@
 		"AzureSynapseAnalytics2_connectionString": {
 			"value": ""
 		},
+		"AzureTableStorage1_connectionString": {
+			"value": ""
+		},
 		"Dataverse1_servicePrincipalCredential": {
 			"value": ""
 		},
@@ -50,11 +53,17 @@
 		"xyjAzureBlobStorage2_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeStorage2_accountKey": {
+			"value": ""
+		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
 			"value": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
 		},
 		"SinkDatasetPowershell_properties_typeProperties_folderPath": {
 			"value": "adftutorial/incrementalcopypowershell"
+		},
+		"AzureDataLakeStorage1_sasUri": {
+			"value": ""
 		},
 		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://seeyakeyvault.vault.azure.cn/"
@@ -103,6 +112,12 @@
 				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
 			]
 		},
+		"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
+			"value": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Storage/storageAccounts/seeyastorageaccount0729"
+		},
+		"AzureDataLakeStorage0729_properties_groupId": {
+			"value": "dfs"
+		},
 		"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
 			"value": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver"
 		},
@@ -125,6 +140,9 @@
 				"ns4-32.azure-dns.cn.vmsql",
 				"vmsql.seeya.com"
 			]
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://seeyastorageaccount0729.dfs.core.chinacloudapi.cn/"
 		},
 		"containerUri": {
 			"value": ""

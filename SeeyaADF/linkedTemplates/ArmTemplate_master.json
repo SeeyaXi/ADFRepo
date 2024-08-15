@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics2'"
 		},
+		"AzureTableStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureTableStorage1'"
+		},
 		"Dataverse1_servicePrincipalCredential": {
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalCredential' of 'Dataverse1'"
@@ -67,6 +71,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'xyjAzureBlobStorage2'"
 		},
+		"AzureDataLakeStorage2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
+		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
@@ -74,6 +82,10 @@
 		"SinkDatasetPowershell_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "adftutorial/incrementalcopypowershell"
+		},
+		"AzureDataLakeStorage1_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'AzureDataLakeStorage1'"
 		},
 		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -136,6 +148,14 @@
 				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
 			]
 		},
+		"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Storage/storageAccounts/seeyastorageaccount0729"
+		},
+		"AzureDataLakeStorage0729_properties_groupId": {
+			"type": "string",
+			"defaultValue": "dfs"
+		},
 		"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver"
@@ -164,6 +184,10 @@
 				"ns4-32.azure-dns.cn.vmsql",
 				"vmsql.seeya.com"
 			]
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://seeyastorageaccount0729.dfs.core.chinacloudapi.cn/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -207,6 +231,9 @@
 					"AzureSynapseAnalytics2_connectionString": {
 						"value": "[parameters('AzureSynapseAnalytics2_connectionString')]"
 					},
+					"AzureTableStorage1_connectionString": {
+						"value": "[parameters('AzureTableStorage1_connectionString')]"
+					},
 					"Dataverse1_servicePrincipalCredential": {
 						"value": "[parameters('Dataverse1_servicePrincipalCredential')]"
 					},
@@ -227,6 +254,9 @@
 					},
 					"xyjAzureBlobStorage2_connectionString": {
 						"value": "[parameters('xyjAzureBlobStorage2_connectionString')]"
+					},
+					"AzureDataLakeStorage1_sasUri": {
+						"value": "[parameters('AzureDataLakeStorage1_sasUri')]"
 					},
 					"AzureKeyVault_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
@@ -266,6 +296,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage2_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
+					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -319,6 +355,12 @@
 					},
 					"AzureBlobPrivate1_properties_fqdns": {
 						"value": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
+					},
+					"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureDataLakeStorage0729_properties_privateLinkResourceId')]"
+					},
+					"AzureDataLakeStorage0729_properties_groupId": {
+						"value": "[parameters('AzureDataLakeStorage0729_properties_groupId')]"
 					},
 					"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
 						"value": "[parameters('AzureSqlDatabasePrivate_properties_privateLinkResourceId')]"
