@@ -8,6 +8,9 @@
 		"AzureBlobStorage_testregion2_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeStorage2_accountKey": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
@@ -53,9 +56,6 @@
 		"xyjAzureBlobStorage2_connectionString": {
 			"value": ""
 		},
-		"AzureDataLakeStorage2_accountKey": {
-			"value": ""
-		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
 			"value": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
 		},
@@ -64,6 +64,9 @@
 		},
 		"AzureDataLakeStorage1_sasUri": {
 			"value": ""
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://seeyastorageaccount0729.dfs.core.chinacloudapi.cn/"
 		},
 		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://seeyakeyvault.vault.azure.cn/"
@@ -140,9 +143,6 @@
 				"ns4-32.azure-dns.cn.vmsql",
 				"vmsql.seeya.com"
 			]
-		},
-		"AzureDataLakeStorage2_properties_typeProperties_url": {
-			"value": "https://seeyastorageaccount0729.dfs.core.chinacloudapi.cn/"
 		},
 		"containerUri": {
 			"value": ""
