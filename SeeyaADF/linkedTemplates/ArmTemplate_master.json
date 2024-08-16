@@ -379,9 +379,6 @@
 					},
 					"test2PrivateLinkService_properties_fqdns": {
 						"value": "[parameters('test2PrivateLinkService_properties_fqdns')]"
-					},
-					"trigger2_properties_pipeline20240412_2_parameters_trigger1": {
-						"value": "[parameters('trigger2_properties_pipeline20240412_2_parameters_trigger1')]"
 					}
 				}
 			},
@@ -410,6 +407,29 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "SeeyaADF_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"trigger2_properties_pipeline20240412_2_parameters_trigger1": {
+						"value": "[parameters('trigger2_properties_pipeline20240412_2_parameters_trigger1')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_3')]"
 			]
 		}
 	]
