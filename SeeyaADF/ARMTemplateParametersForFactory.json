@@ -56,6 +56,12 @@
 		"xyjAzureBlobStorage2_connectionString": {
 			"value": ""
 		},
+		"AzureMySql0821_1_connectionString": {
+			"value": ""
+		},
+		"AzureMySql1_connectionString": {
+			"value": ""
+		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
 			"value": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
 		},

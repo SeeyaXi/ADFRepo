@@ -75,6 +75,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'xyjAzureBlobStorage2'"
 		},
+		"AzureMySql0821_1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql0821_1'"
+		},
+		"AzureMySql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
+		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
 			"type": "string",
 			"defaultValue": "@CONCAT('Incremental-', pipeline().RunId, '.txt')"
@@ -302,6 +310,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureMySql0821_1_connectionString": {
+						"value": "[parameters('AzureMySql0821_1_connectionString')]"
+					},
+					"AzureMySql1_connectionString": {
+						"value": "[parameters('AzureMySql1_connectionString')]"
 					}
 				}
 			},
@@ -370,15 +384,6 @@
 					},
 					"AzureSqlDatabasePrivate_properties_fqdns": {
 						"value": "[parameters('AzureSqlDatabasePrivate_properties_fqdns')]"
-					},
-					"test2PrivateLinkService_properties_privateLinkResourceId": {
-						"value": "[parameters('test2PrivateLinkService_properties_privateLinkResourceId')]"
-					},
-					"test2PrivateLinkService_properties_groupId": {
-						"value": "[parameters('test2PrivateLinkService_properties_groupId')]"
-					},
-					"test2PrivateLinkService_properties_fqdns": {
-						"value": "[parameters('test2PrivateLinkService_properties_fqdns')]"
 					}
 				}
 			},
@@ -400,8 +405,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"SqlServer2_connectionString": {
-						"value": "[parameters('SqlServer2_connectionString')]"
+					"test2PrivateLinkService_properties_privateLinkResourceId": {
+						"value": "[parameters('test2PrivateLinkService_properties_privateLinkResourceId')]"
+					},
+					"test2PrivateLinkService_properties_groupId": {
+						"value": "[parameters('test2PrivateLinkService_properties_groupId')]"
+					},
+					"test2PrivateLinkService_properties_fqdns": {
+						"value": "[parameters('test2PrivateLinkService_properties_fqdns')]"
 					}
 				}
 			},
@@ -422,6 +433,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SqlServer2_connectionString": {
+						"value": "[parameters('SqlServer2_connectionString')]"
 					},
 					"trigger2_properties_pipeline20240412_2_parameters_trigger1": {
 						"value": "[parameters('trigger2_properties_pipeline20240412_2_parameters_trigger1')]"
