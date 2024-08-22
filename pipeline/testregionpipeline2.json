@@ -61,6 +61,11 @@
 				]
 			}
 		],
+		"variables": {
+			"test variable": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2024-04-03T07:51:26Z"
 	},
