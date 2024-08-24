@@ -2440,7 +2440,14 @@
 					{
 						"name": "Copy data1",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Append variable1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -2496,6 +2503,16 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Append variable1",
+						"type": "AppendVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "test-variable",
+							"value": "1"
+						}
 					}
 				],
 				"policy": {
@@ -2504,6 +2521,9 @@
 				"variables": {
 					"test variable": {
 						"type": "String"
+					},
+					"test-variable": {
+						"type": "Array"
 					}
 				},
 				"annotations": [],
