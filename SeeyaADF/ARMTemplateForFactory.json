@@ -2440,7 +2440,14 @@
 					{
 						"name": "Copy data1",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Wait1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -2496,6 +2503,15 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 600
+						}
 					}
 				],
 				"policy": {
@@ -2504,9 +2520,6 @@
 				"variables": {
 					"test variable": {
 						"type": "String"
-					},
-					"test-variable": {
-						"type": "Array"
 					}
 				},
 				"annotations": [],
