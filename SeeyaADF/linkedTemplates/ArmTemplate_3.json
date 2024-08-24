@@ -7,6 +7,28 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "SeeyaADF"
 		},
+		"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Storage/storageAccounts/seeyastorageaccount0729"
+		},
+		"AzureDataLakeStorage0729_properties_groupId": {
+			"type": "string",
+			"defaultValue": "dfs"
+		},
+		"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver"
+		},
+		"AzureSqlDatabasePrivate_properties_groupId": {
+			"type": "string",
+			"defaultValue": "sqlServer"
+		},
+		"AzureSqlDatabasePrivate_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"xyjserver.database.chinacloudapi.cn"
+			]
+		},
 		"test2PrivateLinkService_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Network/privateLinkServices/seeyaPrivateLinkService2"
@@ -28,6 +50,27 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/default/AzureDataLakeStorage0729')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"privateLinkResourceId": "[parameters('AzureDataLakeStorage0729_properties_privateLinkResourceId')]",
+				"groupId": "[parameters('AzureDataLakeStorage0729_properties_groupId')]"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default/AzureSqlDatabasePrivate')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"privateLinkResourceId": "[parameters('AzureSqlDatabasePrivate_properties_privateLinkResourceId')]",
+				"groupId": "[parameters('AzureSqlDatabasePrivate_properties_groupId')]",
+				"fqdns": "[parameters('AzureSqlDatabasePrivate_properties_fqdns')]"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/default/test2PrivateLinkService')]",
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
 			"apiVersion": "2018-06-01",
@@ -35,86 +78,6 @@
 				"privateLinkResourceId": "[parameters('test2PrivateLinkService_properties_privateLinkResourceId')]",
 				"groupId": "[parameters('test2PrivateLinkService_properties_groupId')]",
 				"fqdns": "[parameters('test2PrivateLinkService_properties_fqdns')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureMySqlTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureMySql0821_1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureMySqlTable",
-				"schema": [
-					{
-						"name": "id",
-						"type": "bigint",
-						"precision": 0,
-						"scale": 0
-					},
-					{
-						"name": "name",
-						"type": "varchar",
-						"precision": 0,
-						"scale": 0
-					},
-					{
-						"name": "age",
-						"type": "varchar",
-						"precision": 0,
-						"scale": 0
-					}
-				],
-				"typeProperties": {
-					"tableName": "people"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureMySqlTable2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureMySql1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureMySqlTable",
-				"schema": [
-					{
-						"name": "id",
-						"type": "bigint",
-						"precision": 0,
-						"scale": 0
-					},
-					{
-						"name": "name",
-						"type": "varchar",
-						"precision": 0,
-						"scale": 0
-					},
-					{
-						"name": "age",
-						"type": "varchar",
-						"precision": 0,
-						"scale": 0
-					},
-					{
-						"name": "addline",
-						"type": "varchar",
-						"precision": 0,
-						"scale": 0
-					}
-				],
-				"typeProperties": {
-					"tableName": "people"
-				}
 			},
 			"dependsOn": []
 		},
@@ -1442,6 +1405,67 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline20240420')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureMySqlSource",
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "AzureMySqlSink",
+								"writeBatchSize": 10000,
+								"writeBatchTimeout": "00:00:30"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "AzureMySqlTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "AzureMySqlTable2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/testprivatepipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1507,81 +1531,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-03-20T02:36:12Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/testregionpipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "testregionDelimitedText1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "testregionDelimitedText2",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2024-04-03T07:44:24Z"
 			},
 			"dependsOn": []
 		},
@@ -1654,6 +1603,11 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"variables": {
+					"test variable": {
+						"type": "String"
+					}
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-04-03T07:51:26Z"

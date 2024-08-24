@@ -52,34 +52,125 @@
 			"defaultValue": [
 				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
 			]
-		},
-		"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
-			"type": "string",
-			"defaultValue": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Storage/storageAccounts/seeyastorageaccount0729"
-		},
-		"AzureDataLakeStorage0729_properties_groupId": {
-			"type": "string",
-			"defaultValue": "dfs"
-		},
-		"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
-			"type": "string",
-			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver"
-		},
-		"AzureSqlDatabasePrivate_properties_groupId": {
-			"type": "string",
-			"defaultValue": "sqlServer"
-		},
-		"AzureSqlDatabasePrivate_properties_fqdns": {
-			"type": "array",
-			"defaultValue": [
-				"xyjserver.database.chinacloudapi.cn"
-			]
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "xyjAzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@concat('Incremental-',pipeline().RunId,'.csv')",
+							"type": "Expression"
+						},
+						"container": "xyjcontainer1"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Index",
+						"type": "String"
+					},
+					{
+						"name": "Customer Id",
+						"type": "String"
+					},
+					{
+						"name": "First Name",
+						"type": "String"
+					},
+					{
+						"name": "Last Name",
+						"type": "String"
+					},
+					{
+						"name": "Company",
+						"type": "String"
+					},
+					{
+						"name": "City",
+						"type": "String"
+					},
+					{
+						"name": "Country",
+						"type": "String"
+					},
+					{
+						"name": "Phone 1",
+						"type": "String"
+					},
+					{
+						"name": "Phone 2",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "Subscription Date",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText5')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "xyjAzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "emp.txt",
+						"container": "testprivateendpoints"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "FirstName",
+						"type": "String"
+					},
+					{
+						"name": "LastName",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_3ha')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -507,27 +598,6 @@
 				"privateLinkResourceId": "[parameters('AzureBlobPrivate1_properties_privateLinkResourceId')]",
 				"groupId": "[parameters('AzureBlobPrivate1_properties_groupId')]",
 				"fqdns": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default/AzureDataLakeStorage0729')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"privateLinkResourceId": "[parameters('AzureDataLakeStorage0729_properties_privateLinkResourceId')]",
-				"groupId": "[parameters('AzureDataLakeStorage0729_properties_groupId')]"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default/AzureSqlDatabasePrivate')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"privateLinkResourceId": "[parameters('AzureSqlDatabasePrivate_properties_privateLinkResourceId')]",
-				"groupId": "[parameters('AzureSqlDatabasePrivate_properties_groupId')]",
-				"fqdns": "[parameters('AzureSqlDatabasePrivate_properties_fqdns')]"
 			},
 			"dependsOn": []
 		}

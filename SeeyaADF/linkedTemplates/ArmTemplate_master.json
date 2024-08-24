@@ -15,6 +15,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
 		},
+		"AzureMySql0821_1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql0821_1'"
+		},
+		"AzureMySql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -74,14 +82,6 @@
 		"xyjAzureBlobStorage2_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'xyjAzureBlobStorage2'"
-		},
-		"AzureMySql0821_1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureMySql0821_1'"
-		},
-		"AzureMySql1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
 		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
 			"type": "string",
@@ -230,6 +230,12 @@
 					"AzureDataLakeStorage2_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
 					},
+					"AzureMySql0821_1_connectionString": {
+						"value": "[parameters('AzureMySql0821_1_connectionString')]"
+					},
+					"AzureMySql1_connectionString": {
+						"value": "[parameters('AzureMySql1_connectionString')]"
+					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
@@ -283,15 +289,6 @@
 					},
 					"Snowflake1_properties_typeProperties_database": {
 						"value": "[parameters('Snowflake1_properties_typeProperties_database')]"
-					},
-					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
-						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
-					},
-					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
-						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
-					},
-					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
-						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
 					}
 				}
 			},
@@ -311,11 +308,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureMySql0821_1_connectionString": {
-						"value": "[parameters('AzureMySql0821_1_connectionString')]"
+					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
 					},
-					"AzureMySql1_connectionString": {
-						"value": "[parameters('AzureMySql1_connectionString')]"
+					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('integrationRuntime2_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
 					}
 				}
 			},
@@ -369,21 +369,6 @@
 					},
 					"AzureBlobPrivate1_properties_fqdns": {
 						"value": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
-					},
-					"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
-						"value": "[parameters('AzureDataLakeStorage0729_properties_privateLinkResourceId')]"
-					},
-					"AzureDataLakeStorage0729_properties_groupId": {
-						"value": "[parameters('AzureDataLakeStorage0729_properties_groupId')]"
-					},
-					"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
-						"value": "[parameters('AzureSqlDatabasePrivate_properties_privateLinkResourceId')]"
-					},
-					"AzureSqlDatabasePrivate_properties_groupId": {
-						"value": "[parameters('AzureSqlDatabasePrivate_properties_groupId')]"
-					},
-					"AzureSqlDatabasePrivate_properties_fqdns": {
-						"value": "[parameters('AzureSqlDatabasePrivate_properties_fqdns')]"
 					}
 				}
 			},
@@ -404,6 +389,21 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureDataLakeStorage0729_properties_privateLinkResourceId')]"
+					},
+					"AzureDataLakeStorage0729_properties_groupId": {
+						"value": "[parameters('AzureDataLakeStorage0729_properties_groupId')]"
+					},
+					"AzureSqlDatabasePrivate_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureSqlDatabasePrivate_properties_privateLinkResourceId')]"
+					},
+					"AzureSqlDatabasePrivate_properties_groupId": {
+						"value": "[parameters('AzureSqlDatabasePrivate_properties_groupId')]"
+					},
+					"AzureSqlDatabasePrivate_properties_fqdns": {
+						"value": "[parameters('AzureSqlDatabasePrivate_properties_fqdns')]"
 					},
 					"test2PrivateLinkService_properties_privateLinkResourceId": {
 						"value": "[parameters('test2PrivateLinkService_properties_privateLinkResourceId')]"

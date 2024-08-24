@@ -11,6 +11,12 @@
 		"AzureDataLakeStorage2_accountKey": {
 			"value": ""
 		},
+		"AzureMySql0821_1_connectionString": {
+			"value": ""
+		},
+		"AzureMySql1_connectionString": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
@@ -54,12 +60,6 @@
 			"value": ""
 		},
 		"xyjAzureBlobStorage2_connectionString": {
-			"value": ""
-		},
-		"AzureMySql0821_1_connectionString": {
-			"value": ""
-		},
-		"AzureMySql1_connectionString": {
 			"value": ""
 		},
 		"SinkDatasetPowershell_properties_typeProperties_fileName": {
