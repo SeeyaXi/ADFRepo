@@ -1030,7 +1030,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "testdataflow1",
+						"name": "testdataflow",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
