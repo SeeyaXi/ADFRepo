@@ -15,6 +15,12 @@
 					"referenceName": "FullCopyPipeline1",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline20240413",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
@@ -23,7 +29,7 @@
 				"frequency": "Minute",
 				"interval": 2,
 				"startTime": "2024-03-16T09:02:00",
-				"endTime": "2024-03-17T10:02:00",
+				"endTime": "2025-03-01T10:02:00",
 				"timeZone": "China Standard Time"
 			}
 		}
