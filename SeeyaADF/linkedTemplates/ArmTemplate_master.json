@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalCredential' of 'Dataverse1'"
 		},
+		"MySql1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'MySql1'"
+		},
 		"Snowflake1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Snowflake1'"
@@ -110,6 +114,18 @@
 		"Dataverse1_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
 			"defaultValue": "6d6025ec-4ce3-47ae-90e5-9c68bffbd4ec"
+		},
+		"MySql1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"MySql1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sakila"
+		},
+		"MySql1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "root"
 		},
 		"Snowflake1_properties_typeProperties_database": {
 			"type": "string",
@@ -337,6 +353,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"MySql1_password": {
+						"value": "[parameters('MySql1_password')]"
+					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
 					},
@@ -349,6 +368,15 @@
 					"SinkDatasetPowershell_properties_typeProperties_folderPath": {
 						"value": "[parameters('SinkDatasetPowershell_properties_typeProperties_folderPath')]"
 					},
+					"MySql1_properties_typeProperties_server": {
+						"value": "[parameters('MySql1_properties_typeProperties_server')]"
+					},
+					"MySql1_properties_typeProperties_database": {
+						"value": "[parameters('MySql1_properties_typeProperties_database')]"
+					},
+					"MySql1_properties_typeProperties_username": {
+						"value": "[parameters('MySql1_properties_typeProperties_username')]"
+					},
 					"SqlServer3_properties_typeProperties_server": {
 						"value": "[parameters('SqlServer3_properties_typeProperties_server')]"
 					},
@@ -360,15 +388,6 @@
 					},
 					"keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName')]"
-					},
-					"AzureBlobPrivate1_properties_privateLinkResourceId": {
-						"value": "[parameters('AzureBlobPrivate1_properties_privateLinkResourceId')]"
-					},
-					"AzureBlobPrivate1_properties_groupId": {
-						"value": "[parameters('AzureBlobPrivate1_properties_groupId')]"
-					},
-					"AzureBlobPrivate1_properties_fqdns": {
-						"value": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
 					}
 				}
 			},
@@ -389,6 +408,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobPrivate1_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureBlobPrivate1_properties_privateLinkResourceId')]"
+					},
+					"AzureBlobPrivate1_properties_groupId": {
+						"value": "[parameters('AzureBlobPrivate1_properties_groupId')]"
+					},
+					"AzureBlobPrivate1_properties_fqdns": {
+						"value": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
 					},
 					"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
 						"value": "[parameters('AzureDataLakeStorage0729_properties_privateLinkResourceId')]"
@@ -444,6 +472,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "SeeyaADF_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SeeyaADF_ArmTemplate_4')]"
 			]
 		}
 	]

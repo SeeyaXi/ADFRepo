@@ -21,6 +21,25 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "emp1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerTable1_testencrypt')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -685,7 +704,9 @@
 				"annotations": [],
 				"lastPublishTime": "2024-03-18T03:30:21Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dataflowpipeline_test1')]",
@@ -796,7 +817,9 @@
 				"annotations": [],
 				"lastPublishTime": "2024-05-29T02:38:36Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline20240414')]",
@@ -960,7 +983,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "mydataflow",
+						"name": "mydataflow1",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
@@ -1045,42 +1068,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow3')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RunEveryMinute')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyFromBlobTosqlPipeline2",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					},
-					{
-						"pipelineReference": {
-							"referenceName": "FullCopyPipeline1",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 2,
-						"startTime": "2024-03-16T09:02:00",
-						"endTime": "2024-03-17T10:02:00",
-						"timeZone": "China Standard Time"
-					}
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/schetrigger1')]",

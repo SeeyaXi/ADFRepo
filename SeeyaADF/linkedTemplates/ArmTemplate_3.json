@@ -7,6 +7,20 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "SeeyaADF"
 		},
+		"AzureBlobPrivate1_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Storage/storageAccounts/xyjstorageaccount1"
+		},
+		"AzureBlobPrivate1_properties_groupId": {
+			"type": "string",
+			"defaultValue": "blob"
+		},
+		"AzureBlobPrivate1_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
+			]
+		},
 		"AzureDataLakeStorage0729_properties_privateLinkResourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/9ee035f9-b056-4a68-8553-d4ae4a8e0855/resourceGroups/SeeyaResourceGroup/providers/Microsoft.Storage/storageAccounts/seeyastorageaccount0729"
@@ -49,6 +63,17 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/default/AzureBlobPrivate1')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"privateLinkResourceId": "[parameters('AzureBlobPrivate1_properties_privateLinkResourceId')]",
+				"groupId": "[parameters('AzureBlobPrivate1_properties_groupId')]",
+				"fqdns": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/default/AzureDataLakeStorage0729')]",
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
@@ -1682,25 +1707,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-04-03T07:51:26Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SqlServer1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "emp1"
-				}
 			},
 			"dependsOn": []
 		}

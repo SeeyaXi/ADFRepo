@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "SeeyaADF"
 		},
+		"MySql1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'MySql1'"
+		},
 		"SqlServer1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
@@ -23,6 +27,18 @@
 			"type": "string",
 			"defaultValue": "adftutorial/incrementalcopypowershell"
 		},
+		"MySql1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"MySql1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sakila"
+		},
+		"MySql1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "root"
+		},
 		"SqlServer3_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "localhost"
@@ -38,20 +54,6 @@
 		"keyAzureBlobStorage1_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "storageaccountstring"
-		},
-		"AzureBlobPrivate1_properties_privateLinkResourceId": {
-			"type": "string",
-			"defaultValue": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Storage/storageAccounts/xyjstorageaccount1"
-		},
-		"AzureBlobPrivate1_properties_groupId": {
-			"type": "string",
-			"defaultValue": "blob"
-		},
-		"AzureBlobPrivate1_properties_fqdns": {
-			"type": "array",
-			"defaultValue": [
-				"xyjstorageaccount1.blob.core.chinacloudapi.cn"
-			]
 		}
 	},
 	"variables": {
@@ -498,6 +500,33 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/MySql1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "MySql",
+				"typeProperties": {
+					"server": "[parameters('MySql1_properties_typeProperties_server')]",
+					"port": 3306,
+					"database": "[parameters('MySql1_properties_typeProperties_database')]",
+					"username": "[parameters('MySql1_properties_typeProperties_username')]",
+					"sslMode": 1,
+					"useSystemTrustStore": 0,
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('MySql1_password')]"
+					},
+					"driverVersion": "v2"
+				},
+				"connectVia": {
+					"referenceName": "MySelfHostedIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SqlServer1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -587,17 +616,6 @@
 					"type": "ManagedVirtualNetworkReference",
 					"referenceName": "default"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default/AzureBlobPrivate1')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"privateLinkResourceId": "[parameters('AzureBlobPrivate1_properties_privateLinkResourceId')]",
-				"groupId": "[parameters('AzureBlobPrivate1_properties_groupId')]",
-				"fqdns": "[parameters('AzureBlobPrivate1_properties_fqdns')]"
 			},
 			"dependsOn": []
 		}

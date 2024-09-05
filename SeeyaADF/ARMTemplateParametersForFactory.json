@@ -35,6 +35,9 @@
 		"Dataverse1_servicePrincipalCredential": {
 			"value": ""
 		},
+		"MySql1_password": {
+			"value": ""
+		},
 		"Snowflake1_password": {
 			"value": ""
 		},
@@ -82,6 +85,15 @@
 		},
 		"Dataverse1_properties_typeProperties_servicePrincipalId": {
 			"value": "6d6025ec-4ce3-47ae-90e5-9c68bffbd4ec"
+		},
+		"MySql1_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"MySql1_properties_typeProperties_database": {
+			"value": "sakila"
+		},
+		"MySql1_properties_typeProperties_username": {
+			"value": "root"
 		},
 		"Snowflake1_properties_typeProperties_database": {
 			"value": "SNOWFLAKE"
