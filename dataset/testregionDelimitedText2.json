@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "emp.txt",
-				"container": "des1"
+				"fileName": "Integrated_Depmap_24Q2_Sample.csv",
+				"container": "adftest"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

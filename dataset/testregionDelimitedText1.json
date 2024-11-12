@@ -2,7 +2,7 @@
 	"name": "testregionDelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "testregionacc1",
+			"referenceName": "testregionacc2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "1",
-				"container": "test1"
+				"fileName": "test1112_2.csv",
+				"container": "des1"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
