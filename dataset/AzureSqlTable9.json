@@ -2,7 +2,7 @@
 	"name": "AzureSqlTable9",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase3",
+			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -24,7 +24,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "MyTable"
+			"table": "emp2"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

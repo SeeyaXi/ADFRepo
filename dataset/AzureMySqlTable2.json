@@ -36,5 +36,6 @@
 		"typeProperties": {
 			"tableName": "people"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
