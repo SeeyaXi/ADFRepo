@@ -1,0 +1,7 @@
+{
+	"name": "AzureSqlDatabase588",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/c8f38693-43f1-41ee-99c5-3392e9af8d9a/resourceGroups/SeeyaTest/providers/Microsoft.Sql/servers/xyjserver3",
+		"groupId": "sqlServer"
+	}
+}
